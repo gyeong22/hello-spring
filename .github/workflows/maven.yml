@@ -30,12 +30,11 @@ jobs:
         cache: maven
         
     - name: Build with Maven
-    - run: |
+      run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_rsa
         chmod 600 ~/.ssh/github_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
-
         echo "Host github.com
               HostName github.com
               IdentityFile ~/.ssh/github_rsa
